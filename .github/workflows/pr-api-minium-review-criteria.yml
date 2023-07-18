@@ -2,22 +2,24 @@
       pull_request:
         branches: [main]
       workflow_dispatch:
-      
-    name: Minimum API design review criteria
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout out pr branch
-        uses: actions/checkout@v3
-        with:
-          path: pr-branch
-      - name: Check PR title
-        run: ./pr-branch/chapter8/pr-title.sh"'${{ github.event.pull_request.title }}'"
-      - name: Run API linting
-        run: | 
-         npx @stoplight/spectral-cli lint "./pr-branch/chapter8/apis/product-catalog.oas.yaml" --ruleset "./pr-branch/chapter8/apis/rulesets/json-api.ruleset.yaml"
-      - name: Breaking change checks
-        uses: oasdiff/oasdiff-action/check-breaking@main
-        with:
-          base: './base/chapter8/apis/product-catalog.oas.yaml'
-          revision: './pr-branch/chapter8/apis/product-catalog.oas.yaml'
-          fail-on-diff: true
+    
+    jobs:
+      pr-api-minimum-review-criteria:
+        name: Minimum API design review criteria
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout out pr branch
+            uses: actions/checkout@v3
+            with:
+              path: pr-branch
+          - name: Check PR title
+            run: ./pr-branch/chapter8/pr-title.sh"'${{ github.event.pull_request.title }}'"
+          - name: Run API linting
+            run: | 
+            npx @stoplight/spectral-cli lint "./pr-branch/chapter8/apis/product-catalog.oas.yaml" --ruleset "./pr-branch/chapter8/apis/rulesets/json-api.ruleset.yaml"
+          - name: Breaking change checks
+            uses: oasdiff/oasdiff-action/check-breaking@main
+            with:
+              base: './base/chapter8/apis/product-catalog.oas.yaml'
+              revision: './pr-branch/chapter8/apis/product-catalog.oas.yaml'
+              fail-on-diff: true
