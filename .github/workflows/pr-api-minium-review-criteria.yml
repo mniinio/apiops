@@ -20,6 +20,6 @@
           - name: Breaking change checks
             uses: oasdiff/oasdiff-action/check-breaking@main
             with:
-              base: ./base/chapter8/apis/product-catalog.oas.yaml
-              revision: ./pr-branch/chapter8/apis/product-catalog.oas.yaml
+              base: './main/chapter8/apis/product-catalog.oas.yaml'
+              revision: './pr-branch/chapter8/apis/product-catalog.oas.yaml'
               fail-on-diff: true
