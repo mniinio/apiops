@@ -5,7 +5,7 @@
     
     jobs:
       pr-api-minimum-review-criteria:
-        name: Minimum API design review criteria
+        name: Minimum API design review criteria2
         runs-on: ubuntu-latest
         steps:
           - name: Checkout out pr branch
@@ -23,3 +23,4 @@
               base: ./base/chapter8/apis/product-catalog.oas.yaml
               revision: ./pr-branch/chapter8/apis/product-catalog.oas.yaml
               fail-on-diff: true
+
