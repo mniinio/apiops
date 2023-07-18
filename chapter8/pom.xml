@@ -134,11 +134,4 @@
             </exclusions>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/ikenna/chapter8</url> <!-- TODO change this -->
-        </repository>
-    </distributionManagement>
 </project>
