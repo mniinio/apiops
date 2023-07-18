@@ -19,7 +19,7 @@ tags:
   - name: Reviews
     description: A review is a critical assessment of a product by a customer.
 paths:
-  /v1/catalog/categories:
+  /v2/catalog/categories:
     get:
       tags:
         - Categories
