@@ -17,4 +17,9 @@
           - name: Run API linting
             run: | 
              npx @stoplight/spectral-cli lint "./pr-branch/chapter8/apis/product-catalog.oas.yaml" --ruleset "./pr-branch/chapter8/apis/rulesets/json-api.ruleset.yaml"
-
+          - name: Breaking change checks
+            uses: oasdiff/oasdiff-action/check-breaking@main
+            with:
+              base: './main/chapter8/apis/product-catalog.oas.yaml'
+              revision: './pr-branch/chapter8/apis/product-catalog.oas.yaml'
+              fail-on-diff: true
