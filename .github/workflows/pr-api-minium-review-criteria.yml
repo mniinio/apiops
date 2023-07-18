@@ -7,3 +7,6 @@
           path: pr-branch
       - name: Check PR title
         run: ./pr-branch/chapter8/pr-title.sh"'${{ github.event.pull_request.title }}'"
+      - name: Run API linting
+              run: | 
+                npx @stoplight/spectral-cli lint "./pr-branch/chapter8/apis/product-catalog.oas.yaml" --ruleset "./pr-branch/chapter8/apis/rulesets/json-api.ruleset.yaml"
