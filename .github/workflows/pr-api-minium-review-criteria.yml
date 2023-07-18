@@ -1,0 +1,9 @@
+    name: Minimum API design review criteria
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout out pr branch
+        uses: actions/checkout@v3
+        with:
+          path: pr-branch
+      - name: Check PR title
+        run: ./pr-branch/chapter8/pr-title.sh"'${{ github.event.pull_request.title }}'"
