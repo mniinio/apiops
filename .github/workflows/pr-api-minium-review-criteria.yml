@@ -1,3 +1,8 @@
+    on: 
+      pull_request:
+        branches: [main]
+      workflow_dispatch:
+      
     name: Minimum API design review criteria
     runs-on: ubuntu-latest
     steps:
