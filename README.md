@@ -3,4 +3,4 @@
 
 Stuff for pull request
 Checking if workflow works
-Second branch is the charm
+Second branch is the charm.
