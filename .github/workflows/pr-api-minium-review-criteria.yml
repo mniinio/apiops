@@ -17,14 +17,10 @@
           - name: Run API linting
             run: | 
              npx @stoplight/spectral-cli lint "./pr-branch/chapter8/apis/product-catalog.oas.yaml" --ruleset "./pr-branch/chapter8/apis/rulesets/json-api.ruleset.yaml"
-          - name: Check out main branch
-            uses: actions/checkout@v3
-            with:
-              ref: main
-              path: base
-          - name: Breaking change checks
-            uses: oasdiff/oasdiff-action/check-breaking@main
-            with:
-              base: './base/chapter8/apis/product-catalog.oas.yaml'
-              revision: './pr-branch/chapter8/apis/product-catalog.oas.yaml'
-              fail-on-diff: true
+          - name: Prose Linting
+            run: | 
+              wget -nv https://github.com/errata-ai/vale/releases/download/v2.15.4/vale_2.15.4_Linux_64-bit.tar.gz
+                    mkdir bin && tar -xvzf vale_2.15.4_Linux_64-bit.tar.gz -C bin
+                    export PATH=./bin:"$PATH"
+                    vale sync --config='pr-branch/chapter8/.vale.ini'
+                    vale pr-branch/chapter8/apis/docs --config='pr-branch/chapter8/.vale.ini'
