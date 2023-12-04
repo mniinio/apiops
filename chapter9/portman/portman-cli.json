@@ -1,0 +1,12 @@
+{
+  "local": "../build-output/api.yaml",
+  "output": "collection.postman.json",
+  "envFile": "portman/.env-portman",
+  "portmanConfigFile": "portman/portman-config.json",
+  "includeTests": true,
+  "syncPostman": false,
+  "runNewman": false,
+  "filterFile": "portman/oas-format-filter.json",
+  "bundleContractTests": true,
+  "baseUrl": "http://localhost:9000"
+}
