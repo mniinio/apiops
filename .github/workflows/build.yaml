@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Build - Checkout
         uses: actions/checkout@v3
+      - name: Build - Start background services (Kong gateway and Apicurio API registry)
+        run: |
+          docker compose -f chapter9/compose.yaml up -d
       - name: Build - Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -59,3 +62,22 @@ jobs:
       - name: Build - Run API linting
         run: |
           npx @stoplight/spectral-cli lint build-output/api.yaml --ruleset chapter8/apis/rulesets/json-api.ruleset.yaml
+      - name: Build - Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-after-linting
+          path: |
+            build-output
+      - name: Build - Publish updated API definition to registry
+        run: |
+          curl -v -X POST 'http://localhost:9090/apis/registry/v2/groups/acmeapis/artifacts?ifExists=UPDATE'    \
+           --header 'Content-Type: application/x-yaml'     \
+           --header 'X-Registry-ArtifactId: productsapi'    \
+           --header 'X-Registry-ArtifactType: OPENAPI'     \
+           --data-binary "@build-output/api.yaml"    \
+           --output created-artifact.json   \
+           --fail-with-body
+      - name: Build - Get created artifact version
+        id: artifact-version
+        run: |
+          echo "ARTIFACT_VERSION=$(cat created-artifact.json jq -j '.version')"  >> $GITHUB_OUTPUT
