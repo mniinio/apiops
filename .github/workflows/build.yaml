@@ -81,3 +81,10 @@ jobs:
         id: artifact-version
         run: |
           echo "ARTIFACT_VERSION=$(cat created-artifact.json jq -j '.version')"  >> $GITHUB_OUTPUT
+      - name: Build - Generate Java SDK
+        run: |
+          sed -i "s/OWNER/${{ github.repository_owner }}/g" chapter8/java-template/libraries/okhttp-gson/pom.mustache
+          sed -i "s/REPO_NAME/${{ github.event.repository.name }}/g" chapter8/java-template/libraries/okhttp-gson/pom.mustache
+          tail -8  chapter8/java-template/libraries/okhttp-gson/pom.mustache
+          npm install -g @openapitools/openapi-generator-cli
+          openapi-generator-cli generate --input-spec build-output/api.yaml --generator-name java --output build-output/java-client --template-dir chapter8/java-templat --library okhttp-gson --additional-properties=invokerPackage=com.acmepetsupplies.client,apiPackage=com.acmepetsupplies.api,modelPackage=com.acmepetsupplies.model,groupId=com.acmepetsupplies,artifactId=acmepetsupplies-java-client
