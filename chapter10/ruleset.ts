@@ -1,8 +1,8 @@
 
 import {pattern} from "@stoplight/spectral-functions";
 import { DiagnosticSeverity } from "@stoplight/types";
-import getOperationIdConvention  from './functions/get-operation-id-naming';
-// import getOperationIdConvention from './functions/get-operation-id-naming-simple';
+//import getOperationIdConvention  from './functions/get-operation-id-naming';
+import getOperationIdConvention from './functions/get-operation-id-naming-simple';
 
 
 export default {
