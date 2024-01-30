@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: My API    #A
+  version: 1.0.0
+paths:
+  /path/to/endpoint:
+    get:
+      summary: Endpoint Summary
+      description: Endpoint Description
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object

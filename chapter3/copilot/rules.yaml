@@ -1,0 +1,8 @@
+rules:
+  openapi-info-description-present:
+    description: "Check if info.description field is present"
+    message: "The info.description field is missing"
+    given: "$.info"
+    then:
+      field: "description"
+      function: truthy

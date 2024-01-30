@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: User API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /users/{id}:
+    get:
+      summary: Get a user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: Update a user by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+    delete:
+      summary: Delete a user by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
