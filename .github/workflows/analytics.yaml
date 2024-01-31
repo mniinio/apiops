@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - chapter11
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
 env:
   GITHUB_RUN_NUMBER: ${{ github.run_number }}
 
