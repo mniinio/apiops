@@ -1,4 +1,4 @@
-const canvasData = {
+{
   "apiBusinessModelCanvas": {
     "id": "apiBusinessModelCanvas",
     "layout": {
@@ -501,4 +501,4 @@ const canvasData = {
       }
     ]
   }
-};
+}
