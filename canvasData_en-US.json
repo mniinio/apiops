@@ -1,4 +1,4 @@
-const localizedData = {
+{
   "en-US": {
     "apiBusinessModelCanvas": {
       "title": "API Business Model Canvas",
@@ -339,4 +339,4 @@ const localizedData = {
       }
     }
   }
-};
+}
